@@ -90,8 +90,8 @@ def crear_mapa_laberinto(numero_filas, numero_columnas, numero_paredes, numero_e
             mapa_laberinto[fila_posicion_actual][columna_posicion_actual] = '0'
             numero_pelotas_generadas += 1
 
-    print(numero_espacios_generados)
-    print(numero_paredes_generadas)
+    print("El número de espacios generados es: ",numero_espacios_generados)
+
     return mapa_laberinto
 
 
@@ -132,25 +132,6 @@ while True:
         laberinto[fila_actual][columna_actual] = "*"
         break
 
-def mover_abajo(laberinto1, fila1, columna1):
-    laberinto1[fila1][columna1] = " "
-    fila1 +=1
-    laberinto1[fila1][columna1] = "A"
-
-def mover_arriba(laberinto1, fila1, columna1):
-    laberinto1[fila1][columna1] = " "
-    fila1 -=1
-    laberinto1[fila1][columna1] = "A"
-
-def mover_derecha(laberinto1, fila1, columna1):
-    laberinto1[fila1][columna1] = " "
-    columna1 +=1
-    laberinto1[fila1][columna1] = "A"
-
-def mover_izquierda(laberinto1, fila1, columna1):
-    laberinto1[fila1][columna1] = " "
-    columna1 -=1    
-    laberinto1[fila1][columna1] = "A"
 
 #Mover al caracter a espacios libres sin salirnos del laberinto
 cantidad_movimientos = 1000

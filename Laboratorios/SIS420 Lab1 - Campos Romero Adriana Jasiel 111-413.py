@@ -90,25 +90,25 @@ while True:
         laberinto[fila_actual][columna_actual] = "*"
         break
 
-def mover_abajo(laberinto1, fila1, columna1):
-    laberinto1[fila1][columna1] = " "
-    fila1 +=1
-    laberinto1[fila1][columna1] = "A"
+# def mover_abajo(laberinto1, fila1, columna1):
+#     laberinto1[fila1][columna1] = " "
+#     fila1 +=1
+#     laberinto1[fila1][columna1] = "A"
 
-def mover_arriba(laberinto1, fila1, columna1):
-    laberinto1[fila1][columna1] = " "
-    fila1 -=1
-    laberinto1[fila1][columna1] = "A"
+# def mover_arriba(laberinto1, fila1, columna1):
+#     laberinto1[fila1][columna1] = " "
+#     fila1 -=1
+#     laberinto1[fila1][columna1] = "A"
 
-def mover_derecha(laberinto1, fila1, columna1):
-    laberinto1[fila1][columna1] = " "
-    columna1 +=1
-    laberinto1[fila1][columna1] = "A"
+# def mover_derecha(laberinto1, fila1, columna1):
+#     laberinto1[fila1][columna1] = " "
+#     columna1 +=1
+#     laberinto1[fila1][columna1] = "A"
 
-def mover_izquierda(laberinto1, fila1, columna1):
-    laberinto1[fila1][columna1] = " "
-    columna1 -=1    
-    laberinto1[fila1][columna1] = "A"
+# def mover_izquierda(laberinto1, fila1, columna1):
+#     laberinto1[fila1][columna1] = " "
+#     columna1 -=1    
+#     laberinto1[fila1][columna1] = "A"
 
 #Mover al caracter a espacios libres sin salirnos del laberinto
 cantidad_movimientos = 1000
@@ -197,4 +197,3 @@ while cantidad_movimientos>0:
             sleep(delay)
         else:
             continue
-
