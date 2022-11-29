@@ -1,3 +1,8 @@
+# Crear un software que simule un agente considerando, los diferentes tipos de escenarios y agentes que se revisaron en clases.
+# El agente debe corresponder con una entidad que ubique un determinado numero de objetos que se estableceran al momento de iniciar el 
+# programa, el agente debe recorrer todo el laberinto hasta encontrar todos los objetos a buscar, terminando su trabajo cuando encuentre 
+# el ultimo. Se debe controlar el tiempo que emplee en realizar este desafio.
+
 #Lista de Integrantes:
 #
 # 1. Santillan Jason

@@ -1,7 +1,16 @@
+# Campos Romero Adriana Jasiel 111-413
+# Desarrollar lo siguiente:
+# 1. Contruir un programa en Python que permita construir un laberinto utilizando listas y su representacion debe ser realizada
+#  utilizando caracteres, el tamaño debe ser ingresado cuando inicie el programa, como el numero de obstaculos,  el numero de celdas 
+# que representen paredes o espacio libre para transitar. 
+# 2. Implementar un mecanismo para que un caracter se desplaze de manera aleatoria solamente en los espacios considerados de libre 
+# transito.
+
 import random
+import time
 from time import sleep
 
-def crear_mapa_laberinto(numero_filas, numero_columnas, numero_paredes, numero_espacios):
+def crear_mapa_laberinto(numero_filas, numero_columnas, numero_paredes, numero_espacios, numero_pelotas):
 # Se crea un mapa lleno de paredes
     mapa_laberinto = []
     numero_paredes_generadas = 0
@@ -39,7 +48,26 @@ def crear_mapa_laberinto(numero_filas, numero_columnas, numero_paredes, numero_e
             mapa_laberinto[fila_posicion_actual][columna_posicion_actual] = ' '
             numero_espacios_generados += 1
     
-   
+    numero_pelotas_generadas= 0
+
+    while numero_pelotas_generadas < numero_pelotas:
+        direccion = random.randrange(4)
+        if direccion == 0 and fila_posicion_actual > 0:
+            fila_posicion_actual -= 1
+        elif direccion == 1 and fila_posicion_actual < numero_filas - 1:
+            fila_posicion_actual += 1
+        elif direccion == 2 and columna_posicion_actual > 0:
+            columna_posicion_actual -= 1
+        else:
+            if columna_posicion_actual < numero_columnas - 1:
+                columna_posicion_actual += 1
+            
+        if mapa_laberinto[fila_posicion_actual][columna_posicion_actual] == ' ':
+            mapa_laberinto[fila_posicion_actual][columna_posicion_actual] = '0'
+            numero_pelotas_generadas += 1
+
+    print(numero_espacios_generados)
+    print(numero_paredes_generadas)
     return mapa_laberinto
 
 
@@ -50,8 +78,8 @@ numero_paredes = int(input('Introduzca el número de Paredes del laberinto: '))
 numero_espacios = numero_filas * numero_columnas - numero_paredes
 numero_pelotas = int(input('Introduzca el número de Pelotas del laberinto: '))
 
-laberinto = crear_mapa_laberinto(numero_filas, numero_columnas, numero_paredes, numero_espacios)
-
+laberinto = crear_mapa_laberinto(numero_filas, numero_columnas, numero_paredes, numero_espacios, numero_pelotas)
+start_time = time.time()
 
 
 while True:
@@ -85,6 +113,7 @@ def mover_izquierda(laberinto1, fila1, columna1):
 #Mover al caracter a espacios libres sin salirnos del laberinto
 cantidad_movimientos = 1000
 delay = 0.1
+pelotas_encontradas = 0
 
 
 #Mostrar el laberinto para identificar a las posiciones visualmente
@@ -92,7 +121,7 @@ for fila_mapa_laberinto in laberinto:
     print(fila_mapa_laberinto)
 sleep(5)
 
-while cantidad_movimientos<1000:
+while cantidad_movimientos>0:
     direccion = random.randrange(4) #Generamos una dirección aleatoria al cual se movera el caracter
     if direccion == 0:
         if(fila_actual == numero_filas-1): #Nos aseguramos de que no se salga del laberinto
@@ -101,9 +130,11 @@ while cantidad_movimientos<1000:
         elif laberinto[fila_actual+1][columna_actual] == " " or laberinto[fila_actual+1][columna_actual] == "0":
             if laberinto[fila_actual+1][columna_actual] == "0":
                        laberinto[fila_actual][columna_actual] = " "
+            
+            laberinto[fila_actual][columna_actual] = " "
             fila_actual += 1
             laberinto[fila_actual][columna_actual] = "*"
-            # cantidad_movimientos -= 1
+            cantidad_movimientos -= 1
             # print("Movimientos restantes: " + str(cantidad_movimientos))
             for fila_mapa_laberinto in laberinto:
                 print(fila_mapa_laberinto)
@@ -118,9 +149,10 @@ while cantidad_movimientos<1000:
         elif laberinto[fila_actual-1][columna_actual] == " " or laberinto[fila_actual-1][columna_actual] == "0":
             if laberinto[fila_actual-1][columna_actual] == "0":
                     laberinto[fila_actual][columna_actual] = " "
+            laberinto[fila_actual][columna_actual] = " "
             fila_actual -= 1
             laberinto[fila_actual][columna_actual] = "*"
-            # cantidad_movimientos -= 1
+            cantidad_movimientos -= 1
             # print("Movimientos restantes: " + str(cantidad_movimientos))
             for fila_mapa_laberinto in laberinto:
                 print(fila_mapa_laberinto)
@@ -135,9 +167,11 @@ while cantidad_movimientos<1000:
         elif laberinto[fila_actual][columna_actual+1] == " " or laberinto[fila_actual][columna_actual+1] == "0":
             if laberinto[fila_actual][columna_actual+1] == "0":
                 laberinto[fila_actual][columna_actual] = " "
+            
+            laberinto[fila_actual][columna_actual] = " "
             columna_actual += 1
             laberinto[fila_actual][columna_actual] = "*"
-            # cantidad_movimientos -= 1
+            cantidad_movimientos -= 1
             # print("Movimientos restantes: " + str(cantidad_movimientos))
             for fila_mapa_laberinto in laberinto:
                 print(fila_mapa_laberinto)
@@ -152,9 +186,10 @@ while cantidad_movimientos<1000:
         elif laberinto[fila_actual][columna_actual-1] == " " or laberinto[fila_actual][columna_actual-1] == "0":
             if laberinto[fila_actual][columna_actual-1] == "0":
                  laberinto[fila_actual][columna_actual] = " "
+            laberinto[fila_actual][columna_actual] = " "
             columna_actual -= 1
             laberinto[fila_actual][columna_actual] = "*"
-            # cantidad_movimientos -= 1
+            cantidad_movimientos -= 1
             # print("Movimientos restantes: " + str(cantidad_movimientos))
             for fila_mapa_laberinto in laberinto:
                 print(fila_mapa_laberinto)
