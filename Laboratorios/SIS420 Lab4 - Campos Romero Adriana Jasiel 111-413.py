@@ -62,6 +62,8 @@ class Node:
     def __str__(self):
         return str(self.get_data()) #str representa los datos
 
+# Una solucion heuristica es encontrar el nodo con el costo mas bajo, es por eso que las soluciones heuristicas son mas rapidas que las bpas
+# La variable number es la cantidad de numeros que se van a ordenar (tamaño del estado inicial)
 def search_heuristic_solution(init_node, solution, visited, number):
     visited.append(init_node.get_data())
     if init_node.get_data() == solution:
@@ -85,28 +87,28 @@ def search_heuristic_solution(init_node, solution, visited, number):
                     return solutn
         return None
 
-def search_heuristic_solution(init_node, solution, visited, number):
-    visited.append(init_node.get_data())
-    if init_node.get_data() == solution:
-        return init_node
-    else:
-        # Expandir nodos sucesores (hijos)
-        for i in range(number - 1):
-            node_data = init_node.get_data().copy()
-            temp = node_data[i]
-            node_data[i] = node_data[i+1]
-            node_data[i+1] = temp
-            new_son = Node(node_data)
-            init_node.set_son(new_son)
-            new_son.set_father(init_node)
+# def search_heuristic_solution(init_node, solution, visited, number):
+#     visited.append(init_node.get_data())
+#     if init_node.get_data() == solution:
+#         return init_node
+#     else:
+#         # Expandir nodos sucesores (hijos)
+#         for i in range(number - 1):
+#             node_data = init_node.get_data().copy()
+#             temp = node_data[i]
+#             node_data[i] = node_data[i+1]
+#             node_data[i+1] = temp
+#             new_son = Node(node_data)
+#             init_node.set_son(new_son)
+#             new_son.set_father(init_node)
 
-        for son_node in init_node.get_sons():
-            if not son_node.get_data() in visited and improvement(init_node, son_node):
-                # Llamada recursiva
-                solutn = search_heuristic_solution(son_node, solution, visited, number)
-                if solutn is not None:
-                    return solutn
-        return None
+#         for son_node in init_node.get_sons():
+#             if not son_node.get_data() in visited and improvement(init_node, son_node):
+#                 # Llamada recursiva
+#                 solutn = search_heuristic_solution(son_node, solution, visited, number)
+#                 if solutn is not None:
+#                     return solutn
+#         return None
 
 def improvement(father_node, son_node):
     father_quality = 0
