@@ -13,7 +13,7 @@ from time import sleep
 def crear_mapa_laberinto(numero_filas, numero_columnas, numero_paredes, numero_espacios, numero_pelotas):
 # Se crea un mapa lleno de paredes
     mapa_laberinto = []
-    numero_paredes_generadas = 0
+    #numero_paredes_generadas = 0
     for fila in range(0, numero_filas):
         fila_mapa_laberinto = []
         for columna in range(0, numero_columnas):
@@ -47,7 +47,9 @@ def crear_mapa_laberinto(numero_filas, numero_columnas, numero_paredes, numero_e
         if mapa_laberinto[fila_posicion_actual][columna_posicion_actual] == '#':
             mapa_laberinto[fila_posicion_actual][columna_posicion_actual] = ' '
             numero_espacios_generados += 1
+
     
+    #Se generan las pelotas
     numero_pelotas_generadas= 0
 
     while numero_pelotas_generadas < numero_pelotas:
@@ -66,8 +68,7 @@ def crear_mapa_laberinto(numero_filas, numero_columnas, numero_paredes, numero_e
             mapa_laberinto[fila_posicion_actual][columna_posicion_actual] = '0'
             numero_pelotas_generadas += 1
 
-    print(numero_espacios_generados)
-    print(numero_paredes_generadas)
+    print("El número de espacios generados es: ",numero_espacios_generados)
     return mapa_laberinto
 
 
@@ -78,10 +79,11 @@ numero_paredes = int(input('Introduzca el número de Paredes del laberinto: '))
 numero_espacios = numero_filas * numero_columnas - numero_paredes
 numero_pelotas = int(input('Introduzca el número de Pelotas del laberinto: '))
 
+# Se crea el mapa del laberinto llamando a la función crear_mapa_laberinto
 laberinto = crear_mapa_laberinto(numero_filas, numero_columnas, numero_paredes, numero_espacios, numero_pelotas)
 start_time = time.time()
 
-
+# Se imprime el agente * en una posición aleatoria
 while True:
     fila_actual = random.randrange(numero_filas)
     columna_actual = random.randrange(numero_columnas)
@@ -90,30 +92,9 @@ while True:
         laberinto[fila_actual][columna_actual] = "*"
         break
 
-# def mover_abajo(laberinto1, fila1, columna1):
-#     laberinto1[fila1][columna1] = " "
-#     fila1 +=1
-#     laberinto1[fila1][columna1] = "A"
-
-# def mover_arriba(laberinto1, fila1, columna1):
-#     laberinto1[fila1][columna1] = " "
-#     fila1 -=1
-#     laberinto1[fila1][columna1] = "A"
-
-# def mover_derecha(laberinto1, fila1, columna1):
-#     laberinto1[fila1][columna1] = " "
-#     columna1 +=1
-#     laberinto1[fila1][columna1] = "A"
-
-# def mover_izquierda(laberinto1, fila1, columna1):
-#     laberinto1[fila1][columna1] = " "
-#     columna1 -=1    
-#     laberinto1[fila1][columna1] = "A"
-
 #Mover al caracter a espacios libres sin salirnos del laberinto
 cantidad_movimientos = 1000
 delay = 0.1
-pelotas_encontradas = 0
 
 
 #Mostrar el laberinto para identificar a las posiciones visualmente
@@ -126,7 +107,7 @@ while cantidad_movimientos>0:
     if direccion == 0:
         if(fila_actual == numero_filas-1): #Nos aseguramos de que no se salga del laberinto
             continue
-        # Nos movemos hacia la abajo
+        # Nos movemos hacia abajo==0
         elif laberinto[fila_actual+1][columna_actual] == " " or laberinto[fila_actual+1][columna_actual] == "0":
             if laberinto[fila_actual+1][columna_actual] == "0":
                        laberinto[fila_actual][columna_actual] = " "
@@ -145,7 +126,7 @@ while cantidad_movimientos>0:
     elif direccion == 1:
         if(fila_actual == 0): #Nos aseguramos de que no se salga del laberinto
             continue
-        # Nos movemos hacia la arriba
+        # Nos movemos hacia la arriba==1
         elif laberinto[fila_actual-1][columna_actual] == " " or laberinto[fila_actual-1][columna_actual] == "0":
             if laberinto[fila_actual-1][columna_actual] == "0":
                     laberinto[fila_actual][columna_actual] = " "
@@ -163,7 +144,7 @@ while cantidad_movimientos>0:
     elif direccion == 2:
         if(columna_actual == numero_columnas-1): #Nos aseguramos de que no se salga del laberinto
             continue
-        # Nos movemos hacia la derecha
+        # Nos movemos hacia la derecha==
         elif laberinto[fila_actual][columna_actual+1] == " " or laberinto[fila_actual][columna_actual+1] == "0":
             if laberinto[fila_actual][columna_actual+1] == "0":
                 laberinto[fila_actual][columna_actual] = " "
@@ -182,7 +163,7 @@ while cantidad_movimientos>0:
     elif direccion == 3:
         if(columna_actual == 0): #Nos aseguramos de que no se salga del laberinto
             continue
-        # Nos movemos hacia la izquierda
+        # Nos movemos hacia la izquierda==3
         elif laberinto[fila_actual][columna_actual-1] == " " or laberinto[fila_actual][columna_actual-1] == "0":
             if laberinto[fila_actual][columna_actual-1] == "0":
                  laberinto[fila_actual][columna_actual] = " "

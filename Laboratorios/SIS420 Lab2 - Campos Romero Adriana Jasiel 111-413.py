@@ -134,7 +134,7 @@ while True:
 
 
 #Mover al caracter a espacios libres sin salirnos del laberinto
-cantidad_movimientos = 1000
+
 delay = 0.1
 pelotas_encontradas = 0
 
